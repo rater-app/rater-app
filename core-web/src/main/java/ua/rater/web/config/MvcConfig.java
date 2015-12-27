@@ -44,7 +44,7 @@ public class MvcConfig extends WebMvcConfigurationSupport {
     }
 
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(createJacksonConverter());
+//        converters.add(createJacksonConverter());
         addDefaultHttpMessageConverters(converters);
     }
 
