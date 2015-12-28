@@ -5,5 +5,6 @@ package ua.rater.api.data;
  */
 public enum SurveyStyle {
     HORIZONTAL,
-
+    VERTICAL,
+    GRID
 }

@@ -5,5 +5,5 @@ package ua.rater.api.data;
  */
 public enum ResultStyle {
     PERCENTAGE,
-
+    VOTES
 }

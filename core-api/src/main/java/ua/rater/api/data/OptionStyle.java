@@ -5,5 +5,7 @@ package ua.rater.api.data;
  */
 public enum OptionStyle {
     TEXT,
-
+    PICTURE,
+    VIDEO,
+    URL
 }
