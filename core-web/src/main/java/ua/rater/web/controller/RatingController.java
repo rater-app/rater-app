@@ -17,9 +17,6 @@ public class RatingController extends BasicController {
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public Response hello() {
-        Response response = new Response();
-        response.setStatusCode("OK");
-        response.setData("hello");
-        return response;
+        return createSuccessResponse("hello");
     }
 }

@@ -13,33 +13,30 @@ import java.util.Map;
  */
 public class BasicController {
 
-    @Autowired
-    protected ObjectMapper mapper;
-
-    protected JsonNode createSuccessResponse() {
+    protected Response createSuccessResponse() {
         return createSuccessResponse(null);
     }
 
-    protected JsonNode createSuccessResponse(Object body) {
+    protected Response createSuccessResponse(Object body) {
         Response response = new Response();
         response.setStatusCode("OK");
         response.setData(body);
-        return mapper.valueToTree(response);
+        return response;
     }
 
-    protected JsonNode createFailResponse() {
+    protected Response createFailResponse() {
         return createFailResponse(null);
     }
 
-    protected JsonNode createFailResponse(Map<String, String> errors) {
+    protected Response createFailResponse(Map<String, String> errors) {
         return createFailResponse(errors, HttpStatus.BAD_REQUEST);
     }
 
-    protected JsonNode createFailResponse(Map<String, String> errors, HttpStatus statusCode) {
+    protected Response createFailResponse(Map<String, String> errors, HttpStatus statusCode) {
         Response response = new Response();
         response.setStatusCode("FAIL");
         response.setData(errors);
         response.setHttpStatus(statusCode.toString());
-        return mapper.valueToTree(response);
+        return response;
     }
 }
