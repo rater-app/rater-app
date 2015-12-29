@@ -13,26 +13,32 @@ public class Configuration implements IConfiguration {
     private OptionStyle optionStyle;
     private ResultStyle resultStyle;
 
+    @Override
     public SurveyStyle getSurveyStyle() {
         return surveyStyle;
     }
 
+    @Override
     public void setSurveyStyle(SurveyStyle surveyStyle) {
         this.surveyStyle = surveyStyle;
     }
 
+    @Override
     public OptionStyle getOptionStyle() {
         return optionStyle;
     }
 
+    @Override
     public void setOptionStyle(OptionStyle optionStyle) {
         this.optionStyle = optionStyle;
     }
 
+    @Override
     public ResultStyle getResultStyle() {
         return resultStyle;
     }
 
+    @Override
     public void setResultStyle(ResultStyle resultStyle) {
         this.resultStyle = resultStyle;
     }
