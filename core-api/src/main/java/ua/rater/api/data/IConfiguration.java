@@ -5,15 +5,15 @@ package ua.rater.api.data;
  */
 public interface IConfiguration {
 
-    public SurveyStyle getSurveyStyle();
-
-    public void setSurveyStyle(SurveyStyle surveyStyle);
-
-    public OptionStyle getOptionStyle();
-
-    public void setOptionStyle(OptionStyle optionStyle);
-
-    public ResultStyle getResultStyle();
-
-    public void setResultStyle(ResultStyle resultStyle);
+//    public SurveyStyle getSurveyStyle();
+//
+//    public void setSurveyStyle(SurveyStyle surveyStyle);
+//
+//    public OptionStyle getOptionStyle();
+//
+//    public void setOptionStyle(OptionStyle optionStyle);
+//
+//    public ResultStyle getResultStyle();
+//
+//    public void setResultStyle(ResultStyle resultStyle);
 }

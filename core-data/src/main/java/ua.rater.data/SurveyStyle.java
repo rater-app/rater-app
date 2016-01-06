@@ -1,4 +1,4 @@
-package ua.rater.api.data;
+package ua.rater.data;
 
 /**
  * Created by Anastasia on 27.12.2015.

@@ -1,51 +1,87 @@
 package ua.rater.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.context.annotation.Bean;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import ua.rater.api.data.ISurvey;
+import org.springframework.web.bind.annotation.*;
+import ua.rater.api.data.*;
+import ua.rater.data.*;
 import ua.rater.web.controller.model.Response;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Anastasia on 28.12.2015.
  */
-@Controller
+@RestController
 public class SurveyController extends BasicController {
     @Autowired
     IService service;
 
+    protected Map<String, String> errors;
+
     @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public Response view(@RequestParam("id") String id) {
+    public Response view(@RequestParam(value = "id", required = false) String id) {
         if (!StringUtils.isEmpty(id)) {
-            ISurvey survey = service.find(id);
+            Survey survey = service.find(id);
             return createSuccessResponse(survey);
         } else {
-            return createFailResponse();
+            errors = new HashMap<String, String>();
+            errors.put("id", "ID is required");
+            return createFailResponse(errors);
         }
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public Response update(@RequestParam("survey") ISurvey survey) {
+    public Response update(@RequestBody Survey survey) {
         service.update(survey);
         return createSuccessResponse();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Response add(@RequestParam("survey") ISurvey survey) {
+    public Response add(@RequestBody Survey survey) {
         service.add(survey);
         return createSuccessResponse();
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public Response view(@RequestParam("id") String id) {
+    public Response delete(@RequestParam("id") String id) {
         if (!StringUtils.isEmpty(id)) {
             service.delete(id);
             return createSuccessResponse();
         } else {
             return createFailResponse();
         }
+    }
+
+    @Bean
+    public IService getService(){
+        IService service = new IService(){
+
+            @Override
+            public Survey find(String id) {
+                Survey survey = new Survey();
+                survey.setConfiguration(new Configuration(SurveyStyle.HORIZONTAL, OptionStyle.TEXT, ResultStyle.VOTES));
+                survey.setId("876");
+                return survey;
+            }
+
+            @Override
+            public void update(Survey survey) {
+
+            }
+
+            @Override
+            public void add(Survey survey) {
+
+            }
+
+            @Override
+            public void delete(String id) {
+
+            }
+        };
+        return service;
     }
 }

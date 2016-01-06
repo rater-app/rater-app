@@ -1,44 +1,35 @@
 package ua.rater.data;
 
-import ua.rater.api.data.IConfiguration;
-import ua.rater.api.data.IDecoration;
-import ua.rater.api.data.ISurvey;
 
 /**
  * Created by Anastasia on 27.12.2015.
  */
-public class Survey implements ISurvey {
+public class Survey {
     private String id;
-    private IDecoration decoration;
-    private IConfiguration configuration;
+    private Decoration decoration;
+    private Configuration configuration;
 
-    @Override
     public String getId() {
         return id;
     }
 
-    @Override
     public void setId(String id) {
         this.id = id;
     }
 
-    @Override
-    public IDecoration getDecoration() {
+    public Decoration getDecoration() {
         return decoration;
     }
 
-    @Override
-    public void setDecoration(IDecoration decoration) {
+    public void setDecoration(Decoration decoration) {
         this.decoration = decoration;
     }
 
-    @Override
-    public IConfiguration getConfiguration() {
+    public Configuration getConfiguration() {
         return configuration;
     }
 
-    @Override
-    public void setConfiguration(IConfiguration configuration) {
+    public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }
 }
