@@ -1,17 +1,15 @@
 package ua.rater.data;
 
-import ua.rater.api.data.IDecoration;
-import ua.rater.api.data.IOption;
 
 import java.util.List;
 
 /**
  * Created by Anastasia on 27.12.2015.
  */
-public class Decoration implements IDecoration{
+public class Decoration {
     private String name;
     private String description;
-    private List<IOption> options;
+    private List<Option> options;
     private String submitButton;
 
     public String getName() {
@@ -30,11 +28,11 @@ public class Decoration implements IDecoration{
         this.description = description;
     }
 
-    public List<IOption> getOptions() {
+    public List<Option> getOptions() {
         return options;
     }
 
-    public void setOptions(List<IOption> options) {
+    public void setOptions(List<Option> options) {
         this.options = options;
     }
 

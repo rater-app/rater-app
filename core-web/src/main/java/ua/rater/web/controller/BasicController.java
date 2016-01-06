@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import ua.rater.web.controller.model.Response;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,33 +14,36 @@ import java.util.Map;
  */
 public class BasicController {
 
-    @Autowired
-    protected ObjectMapper mapper;
-
-    protected JsonNode createSuccessResponse() {
+    protected Response createSuccessResponse() {
         return createSuccessResponse(null);
     }
 
-    protected JsonNode createSuccessResponse(Object body) {
+    protected Response createSuccessResponse(Object body) {
         Response response = new Response();
         response.setStatusCode("OK");
         response.setData(body);
-        return mapper.valueToTree(response);
+        return response;
     }
 
-    protected JsonNode createFailResponse() {
+    protected Response createFailResponse() {
         return createFailResponse(null);
     }
 
-    protected JsonNode createFailResponse(Map<String, String> errors) {
+    protected Response createFailResponse(String fieldName, String error) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put(fieldName, error);
+        return createFailResponse(errors);
+    }
+
+    protected Response createFailResponse(Map<String, String> errors) {
         return createFailResponse(errors, HttpStatus.BAD_REQUEST);
     }
 
-    protected JsonNode createFailResponse(Map<String, String> errors, HttpStatus statusCode) {
+    protected Response createFailResponse(Map<String, String> errors, HttpStatus statusCode) {
         Response response = new Response();
         response.setStatusCode("FAIL");
         response.setData(errors);
         response.setHttpStatus(statusCode.toString());
-        return mapper.valueToTree(response);
+        return response;
     }
 }

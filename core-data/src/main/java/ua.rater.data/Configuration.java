@@ -1,17 +1,22 @@
 package ua.rater.data;
 
-import ua.rater.api.data.IConfiguration;
-import ua.rater.api.data.OptionStyle;
-import ua.rater.api.data.ResultStyle;
-import ua.rater.api.data.SurveyStyle;
 
 /**
  * Created by Anastasia on 27.12.2015.
  */
-public class Configuration implements IConfiguration {
+public class Configuration {
     private SurveyStyle surveyStyle;
     private OptionStyle optionStyle;
     private ResultStyle resultStyle;
+
+    public Configuration(SurveyStyle surveyStyle, OptionStyle optionStyle, ResultStyle resultStyle) {
+        this.surveyStyle = surveyStyle;
+        this.optionStyle = optionStyle;
+        this.resultStyle = resultStyle;
+    }
+
+    public Configuration() {
+    }
 
     public SurveyStyle getSurveyStyle() {
         return surveyStyle;

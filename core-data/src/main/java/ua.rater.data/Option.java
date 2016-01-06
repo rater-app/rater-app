@@ -1,11 +1,10 @@
 package ua.rater.data;
 
-import ua.rater.api.data.IOption;
 
 /**
  * Created by Anastasia on 27.12.2015.
  */
-public class Option implements IOption{
+public class Option {
     private String id;
     private String label;
     private String description;
