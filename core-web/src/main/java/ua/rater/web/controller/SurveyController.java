@@ -16,48 +16,48 @@ import java.util.Map;
  */
 @RestController
 public class SurveyController extends BasicController {
-    @Autowired
-    IService service;
 
-    protected Map<String, String> errors;
+    IService service = getService();
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public Response view(@RequestParam(value = "id", required = false) String id) {
-        if (!StringUtils.isEmpty(id)) {
-            Survey survey = service.find(id);
-            return createSuccessResponse(survey);
-        } else {
-            errors = new HashMap<String, String>();
-            errors.put("id", "ID is required");
-            return createFailResponse(errors);
+        if (StringUtils.isEmpty(id)) {
+            return createFailResponse("id", "ID is required");
         }
+        Survey survey = service.find(id);
+        return createSuccessResponse(survey);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public Response update(@RequestBody Survey survey) {
+    public Response update(@RequestBody(required = false)Survey survey ) {
+        if (StringUtils.isEmpty(survey)) {
+            return createFailResponse("survey", "Survey is required");
+        }
         service.update(survey);
         return createSuccessResponse();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public Response add(@RequestBody Survey survey) {
+    public Response add(@RequestBody(required = false) Survey survey) {
+        if (StringUtils.isEmpty(survey)) {
+            return createFailResponse("survey", "Survey is required");
+        }
         service.add(survey);
         return createSuccessResponse();
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public Response delete(@RequestParam("id") String id) {
-        if (!StringUtils.isEmpty(id)) {
-            service.delete(id);
-            return createSuccessResponse();
-        } else {
-            return createFailResponse();
+        if (StringUtils.isEmpty(id)) {
+            return createFailResponse("id", "ID is required");
         }
+        service.delete(id);
+        return createSuccessResponse();
     }
 
     @Bean
-    public IService getService(){
-        IService service = new IService(){
+    public IService getService() {
+        IService service = new IService() {
 
             @Override
             public Survey find(String id) {

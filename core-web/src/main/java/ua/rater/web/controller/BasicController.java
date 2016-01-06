@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import ua.rater.web.controller.model.Response;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -26,6 +27,12 @@ public class BasicController {
 
     protected Response createFailResponse() {
         return createFailResponse(null);
+    }
+
+    protected Response createFailResponse(String fieldName, String error) {
+        Map<String, String> errors = new HashMap<String, String>();
+        errors.put(fieldName, error);
+        return createFailResponse(errors);
     }
 
     protected Response createFailResponse(Map<String, String> errors) {
