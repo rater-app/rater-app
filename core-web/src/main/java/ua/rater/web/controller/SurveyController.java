@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import ua.rater.api.data.*;
+import ua.rater.api.service.IService;
+import ua.rater.api.service.ISurveyService;
 import ua.rater.data.*;
 import ua.rater.web.controller.model.Response;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Anastasia on 28.12.2015.
@@ -17,7 +15,8 @@ import java.util.Map;
 @RestController
 public class SurveyController extends BasicController {
 
-    IService service = getService();
+    @Autowired
+    ISurveyService service;
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public Response view(@RequestParam(value = "id", required = false) String id) {
@@ -53,35 +52,5 @@ public class SurveyController extends BasicController {
         }
         service.delete(id);
         return createSuccessResponse();
-    }
-
-    @Bean
-    public IService getService() {
-        IService service = new IService() {
-
-            @Override
-            public Survey find(String id) {
-                Survey survey = new Survey();
-                survey.setConfiguration(new Configuration(SurveyStyle.HORIZONTAL, OptionStyle.TEXT, ResultStyle.VOTES));
-                survey.setId("876");
-                return survey;
-            }
-
-            @Override
-            public void update(Survey survey) {
-
-            }
-
-            @Override
-            public void add(Survey survey) {
-
-            }
-
-            @Override
-            public void delete(String id) {
-
-            }
-        };
-        return service;
     }
 }
