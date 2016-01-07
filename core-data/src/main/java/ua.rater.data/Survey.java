@@ -4,18 +4,9 @@ package ua.rater.data;
 /**
  * Created by Anastasia on 27.12.2015.
  */
-public class Survey {
-    private String id;
+public class Survey extends Identifier {
     private Decoration decoration;
     private Configuration configuration;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public Decoration getDecoration() {
         return decoration;
